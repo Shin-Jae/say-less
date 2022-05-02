@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
 
-function LoginForm() {
+function SignupForm() {
     const dispatch = useDispatch();
     // const [credential, setCredential] = useState("");
     const [email, setEmail] = useState("");
@@ -25,7 +25,8 @@ function LoginForm() {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form className="signin-modal" onSubmit={handleSubmit}>
+            <h2>Sign Up</h2>
             <ul>
                 {errors.map((error, idx) => <li key={idx}>{error}</li>)}
             </ul>
@@ -70,4 +71,4 @@ function LoginForm() {
     );
 }
 
-export default LoginForm;
+export default SignupForm;

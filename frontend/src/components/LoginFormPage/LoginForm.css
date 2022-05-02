@@ -1,0 +1,38 @@
+.login-container {
+    display: grid;
+    grid-template-areas:
+    "a a a"
+    "b . c";
+    gap: 10px;
+    border: solid grey;
+    border-radius: 20px;
+}
+
+.login-header {
+    display: flex;
+    grid-area: a;
+    flex-direction: column;
+    text-align: center;
+}
+
+.signin-btn {
+    display: flex;
+    grid-area: b;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.login-form {
+    display: flex;
+    grid-area: c;
+    flex-direction: column;
+    align-items: center;
+    border-left: 2px solid grey;
+}
+
+.signin-modal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
