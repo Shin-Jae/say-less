@@ -6,6 +6,7 @@ import LoginFormPage from "./components/LoginFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import Feed from "./components/Feed";
+import SingleQuestion from "./components/SingleQuestion";
 
 function App() {
   const dispatch = useDispatch();
@@ -24,6 +25,9 @@ function App() {
           </Route>
           <Route path="/home">
             <Feed />
+          </Route>
+          <Route path="/question/:id">
+            <SingleQuestion />
           </Route>
         </Switch>
       )}

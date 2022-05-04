@@ -1,5 +1,6 @@
 const GET_QUESTIONS = "questions/GET_QUESTION";
 // export const POST_QUESTION = "question/POST_QUESTION";
+const GET_ONE = "questions/GET_ONE";
 
 export const getQuestion = (questions) => ({
     type: GET_QUESTIONS,
@@ -10,6 +11,11 @@ export const getQuestion = (questions) => ({
 //     type: POST_QUESTION,
 //     post,
 // })
+
+export const getOne = (question) => ({
+    type: GET_ONE,
+    question
+});
 
 export const getQuestions = () => async dispatch => {
     const response = await fetch(`/api/home`);
@@ -53,6 +59,16 @@ export const getQuestions = () => async dispatch => {
 //     }
 // };
 
+export const getOneQuestion = id => async dispatch => {
+    const response = await fetch(`/api/question/${id}`);
+
+    if (response.ok) {
+        let question = await response.json();
+        console.log('dfsdfsddsf', question)
+        dispatch(getOne(question));
+    }
+}
+
 const initialState = {
     viewQuestion: {}
 };
@@ -67,6 +83,13 @@ const questionReducer = (state = initialState, action) => {
                 newState.viewQuestion[question.id] = question;
             });
             return newState;
+        case GET_ONE:
+            return {
+                ...state, [action.question.id]: {
+                    ...state[action.question.id],
+                    ...action.question,
+                }
+            }
         default:
             return state;
     }

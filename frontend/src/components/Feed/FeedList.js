@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { NavLink } from 'react-router-dom';
 import { getQuestions } from "../../store/question";
 // import QuestionContent from "./QuestionContent";
 import QuestionFormModal from "../QuestionFormModal";
@@ -23,7 +24,7 @@ function FeedList() {
             {!Object.values(questions).length && <span>No questions posted</span>}
             <ul className="question-list">
                 {Object.values(questions).map(({ id, question, description, User }) => {
-                    return <li key={id} className="q-list">
+                    return <NavLink to={`/question/${id}`}><li key={id} className="q-list">
                         <div className="username">
                             User(image): {User.username}
                         </div>
@@ -48,8 +49,21 @@ function FeedList() {
                             </button>
                         </span>
                     </li>
+                    </NavLink>
                 })}
             </ul>
+            <div className="topic-list">
+                <h2>Topics</h2>
+                <ul>
+                    <NavLink to='/business'>
+                        <li>Business</li>
+                    </NavLink >
+                    <li>Sports</li>
+                    <li>Movies</li>
+                    <li>Enviroment</li>
+                    <li>Video Games</li>
+                </ul>
+            </div>
         </>
     )
 }
