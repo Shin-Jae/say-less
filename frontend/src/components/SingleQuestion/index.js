@@ -5,12 +5,14 @@ import { getOneQuestion } from "../../store/question";
 import '../Feed/Feed.css'
 
 function SingleQuestion() {
-    const { quesId } = useParams();
-    const questions = useSelector(state => state.getQues.viewQuestion)
+    const { id } = useParams();
+    const question = useSelector(state => state.getQues.viewQuestion)
+    console.log('dfsdfafdf', question)
     // const { question, description, id } = questions.find(question => quesId === question.id);
     const dispatch = useDispatch();
+
     useEffect(() => {
-        dispatch(getOneQuestion(quesId));
+        dispatch(getOneQuestion(id));
     }, [dispatch]);
 
     return (
@@ -19,25 +21,27 @@ function SingleQuestion() {
             {/* <div className="username">
                 User(image): {User.username}
             </div> */}
-            <div className="question">
-                Q: {questions.question}
-            </div>
-            <div className="description">
-                D: {questions.description}
-            </div>
-            <span className="ques-btn">
-                <button
-                    className={`answer-btn-${questions.id}`}
-                >Answer
-                </button>
-                <button
-                    className={`edit-btn-${questions.id}`}
-                >Edit
-                </button>
-                <button
-                    className={`delete-btn-${questions.id}`}
-                >Delete
-                </button>
+            <span key={`question-${id}`}>
+                <div className="question">
+                    Q: {question.question}
+                </div>
+                <div className="description">
+                    D: {question.description}
+                </div>
+                <span className="ques-btn">
+                    <button
+                        className={`answer-btn-${question.id}`}
+                    >Answer
+                    </button>
+                    <button
+                        className={`edit-btn-${question.id}`}
+                    >Edit
+                    </button>
+                    <button
+                        className={`delete-btn-${question.id}`}
+                    >Delete
+                    </button>
+                </span>
             </span>
         </>
     )

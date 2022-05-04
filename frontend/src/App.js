@@ -8,9 +8,11 @@ import Navigation from "./components/Navigation";
 import Feed from "./components/Feed";
 import SingleQuestion from "./components/SingleQuestion";
 
+
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
+
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);

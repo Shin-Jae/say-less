@@ -64,7 +64,7 @@ export const getOneQuestion = id => async dispatch => {
 
     if (response.ok) {
         let question = await response.json();
-        console.log('dfsdfsddsf', question)
+        console.log('yoyoyo', question)
         dispatch(getOne(question));
     }
 }
@@ -84,12 +84,16 @@ const questionReducer = (state = initialState, action) => {
             });
             return newState;
         case GET_ONE:
+            // let one = { ...state, viewQuestion: { ...state.viewQuestions } };
+            // one.viewQuestion[action.question.id] = action.question
+            // return one;
             return {
-                ...state, [action.question.id]: {
+                ...state,
+                viewQuestion: {
                     ...state[action.question.id],
                     ...action.question,
-                }
-            }
+                },
+            };
         default:
             return state;
     }

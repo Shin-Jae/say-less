@@ -24,7 +24,7 @@ function FeedList() {
             {!Object.values(questions).length && <span>No questions posted</span>}
             <ul className="question-list">
                 {Object.values(questions).map(({ id, question, description, User }) => {
-                    return <NavLink to={`/question/${id}`}><li key={id} className="q-list">
+                    return <NavLink to={`/question/${id}`} key={id}><li className="q-list">
                         <div className="username">
                             User(image): {User.username}
                         </div>
@@ -52,7 +52,7 @@ function FeedList() {
                     </NavLink>
                 })}
             </ul>
-            <div className="topic-list">
+            <div className="topic">
                 <h2>Topics</h2>
                 <ul>
                     <NavLink to='/business'>
