@@ -9,15 +9,19 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       questionId: {
+        // references: { model: "Questions" },
         type: Sequelize.INTEGER
       },
       answerId: {
+        // references: { model: "Answers" },
         type: Sequelize.INTEGER
       },
       commentId: {
+        // references: { model: "Comments" },
         type: Sequelize.INTEGER
       },
       userId: {
+        // references: { model: "Users" },
         type: Sequelize.INTEGER
       },
       createdAt: {

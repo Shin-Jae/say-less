@@ -5,8 +5,9 @@ module.exports = (sequelize, DataTypes) => {
     question: DataTypes.STRING,
     description: DataTypes.STRING
   }, {});
-  Question.associate = function(models) {
+  Question.associate = function (models) {
     // associations can be defined here
+    Question.belongsTo(models.User, { foreignKey: "userId" });
   };
   return Question;
 };
