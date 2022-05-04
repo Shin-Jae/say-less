@@ -1,12 +1,3 @@
-import QuestionFormModal from "../QuestionFormModal";
+import FeedList from "./FeedList";
 
-function Feed() {
-    return (
-        <div>
-            <h1>Feed page</h1>
-            <QuestionFormModal />
-        </div>
-    )
-}
-
-export default Feed;
+export default FeedList;
