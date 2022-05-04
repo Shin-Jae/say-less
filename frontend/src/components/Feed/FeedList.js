@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getQuestions } from "../../store/question";
 // import QuestionContent from "./QuestionContent";
 import QuestionFormModal from "../QuestionFormModal";
+import './Feed.css'
 
 function FeedList() {
     const questions = useSelector(state => state.getQues.viewQuestion)
@@ -18,14 +19,20 @@ function FeedList() {
                 <h1>Feed page</h1>
                 <QuestionFormModal />
             </div>
-            <h2>Questions</h2>
+            <h2 className="ques-header">Questions</h2>
             {!Object.values(questions).length && <span>No questions posted</span>}
             <ul className="question-list">
-                {Object.values(questions).map(({ id, question }) => {
-                    return <li key={id}>
-                        <span className="question">
-                            {question}
-                        </span>
+                {Object.values(questions).map(({ id, question, description, User }) => {
+                    return <li key={id} className="q-list">
+                        <div className="username">
+                            User(image): {User.username}
+                        </div>
+                        <div className="question">
+                            Q: {question}
+                        </div>
+                        <div className="description">
+                            D: {description}
+                        </div>
                         <span className="ques-btn">
                             <button
                                 className={`answer-btn-${id}`}
