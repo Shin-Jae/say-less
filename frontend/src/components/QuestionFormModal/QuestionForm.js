@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 // import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
-import { postQuestion, getQuestions } from "../../store/question";
+import { postQuestion } from "../../store/question";
 
 function QuestionForm() {
     const dispatch = useDispatch();

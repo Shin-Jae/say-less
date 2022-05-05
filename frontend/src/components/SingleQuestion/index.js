@@ -1,7 +1,8 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { NavLink, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { getOneQuestion } from "../../store/question";
+import EditQuestion from "../EditQuestionModal";
 import '../Feed/Feed.css'
 
 function SingleQuestion() {
@@ -13,7 +14,7 @@ function SingleQuestion() {
 
     useEffect(() => {
         dispatch(getOneQuestion(id));
-    }, [dispatch]);
+    }, [dispatch, id]);
 
     return (
         <>
@@ -33,10 +34,7 @@ function SingleQuestion() {
                         className={`answer-btn-${question.id}`}
                     >Answer
                     </button>
-                    <button
-                        className={`edit-btn-${question.id}`}
-                    >Edit
-                    </button>
+                    <EditQuestion oneQuestion={question} />
                     <button
                         className={`delete-btn-${question.id}`}
                     >Delete

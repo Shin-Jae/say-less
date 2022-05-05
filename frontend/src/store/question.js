@@ -3,6 +3,7 @@ import { csrfFetch } from "./csrf";
 const GET_QUESTIONS = "questions/GET_QUESTION";
 const POST_QUESTION = "question/POST_QUESTION";
 const GET_ONE = "questions/GET_ONE";
+const EDIT_ONE = "questions/EDIT_ONE";
 
 export const getQuestion = (questions) => ({
     type: GET_QUESTIONS,
@@ -18,6 +19,11 @@ export const getOne = (question) => ({
     type: GET_ONE,
     question
 });
+
+export const editOne = (question) => ({
+    type: EDIT_ONE,
+    question
+})
 
 export const getQuestions = () => async dispatch => {
     const response = await fetch(`/api/home`);
@@ -68,8 +74,18 @@ export const getOneQuestion = id => async dispatch => {
 
     if (response.ok) {
         let question = await response.json();
-        console.log('yoyoyo', question)
+        // console.log('yoyoyo', question)
         dispatch(getOne(question));
+    }
+}
+
+export const editOneQuestion = data => async dispatch => {
+    const response = await csrfFetch(`/api/question/${data.id}`);
+    console.log('data', response)
+    if (response.ok) {
+        let question = await response.json();
+        dispatch(getOne(question));
+        return question;
     }
 }
 
@@ -100,6 +116,16 @@ const questionReducer = (state = initialState, action) => {
             };
         // case POST_QUESTION:
         //     return { ...state, viewQuestion: { ...state.viewQuestion, ...action.post } }
+        case EDIT_ONE:
+            newState = Object.assign({}, state);
+            newState.viewQuestion = state.viewQuestion.map((ques) => {
+                if (ques.id === action.question.id) {
+                    return action.question;
+                } else {
+                    return ques;
+                }
+            });
+            return newState;
         default:
             return state;
     }

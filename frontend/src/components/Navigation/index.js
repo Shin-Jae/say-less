@@ -28,7 +28,7 @@ function Navigation({ isLoaded }) {
             <h1>Welcome to "Say Less" !</h1>
             <ul>
                 <li className='navbar'>
-                    <NavLink exact to="/">Home</NavLink>
+                    <NavLink exact to="/home">Home</NavLink>
                     {isLoaded && sessionLinks}
                 </li>
             </ul>
