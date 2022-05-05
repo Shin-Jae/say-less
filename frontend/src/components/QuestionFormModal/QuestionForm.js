@@ -1,6 +1,7 @@
-import React, { useState } from "react";
-import * as sessionActions from "../../store/session";
+import React, { useState, useEffect } from "react";
+// import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
+import { postQuestion, getQuestions } from "../../store/question";
 
 function QuestionForm() {
     const dispatch = useDispatch();
@@ -8,27 +9,35 @@ function QuestionForm() {
     const [question, setQuestion] = useState("");
     const [topic, setTopic] = useState("");
     const [description, setDescription] = useState("");
-    const [errors, setErrors] = useState([]);
+    const [showModal, setShowModal] = useState(false);
+    // const [errors, setErrors] = useState([]);
 
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-    //     if (password === confirmPassword) {
-    //         setErrors([]);
-    //         return dispatch(sessionActions.createquest({ email, username, password }))
-    //             .catch(async (res) => {
-    //                 const data = await res.json();
-    //                 if (data && data.errors) setErrors(data.errors);
-    //             });
-    //     }
-    //     return setErrors(['Confirm Password field must be the same as the Password field']);
-    // };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const newPost = {
+            question,
+            description,
+            topic
+        };
+        const post = await dispatch(postQuestion(newPost));
+        console.log(post)
+        if (post) reset()
+    };
+
+    const reset = () => {
+        setQuestion('');
+        setTopic('');
+        setDescription('');
+        setShowModal(false);
+    }
 
     return (
-        <form className="question-modal">
+        <form className="question-modal" onSubmit={handleSubmit}>
             <h2>Ask a question</h2>
-            <ul>
+            {/* <ul>
                 {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-            </ul>
+            </ul> */}
             <label>
                 Question
                 <input
