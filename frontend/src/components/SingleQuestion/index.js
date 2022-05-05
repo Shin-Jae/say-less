@@ -28,27 +28,29 @@ function SingleQuestion() {
             {/* <div className="username">
                 User(image): {User.username}
             </div> */}
-            <span key={`question-${id}`}>
-                <div className="question">
-                    Q: {question.question}
-                </div>
-                <div className="description">
-                    D: {question.description}
-                </div>
-                <span className="ques-btn">
-                    <button
-                        className={`answer-btn-${question.id}`}
-                    >Answer
-                    </button>
-                    <EditQuestion oneQuestion={question} />
-                    <button
-                        className={`delete-btn-${question.id}`}
-                        type="button"
-                        onClick={() => handleSubmit(question.id)}
-                    >Delete
-                    </button>
+            <div>
+                <span key={`question-${id}`} className="question-list q-list">
+                    <div className="question">
+                        Q: {question.question}
+                    </div>
+                    <div className="description">
+                        D: {question.description}
+                    </div>
+                    <span className="ques-btn">
+                        <button
+                            className={`answer-btn-${question.id}`}
+                        >Answer
+                        </button>
+                        <EditQuestion oneQuestion={question} />
+                        <button
+                            className={`delete-btn-${question.id}`}
+                            type="button"
+                            onClick={() => handleSubmit(question.id)}
+                        >Delete
+                        </button>
+                    </span>
                 </span>
-            </span>
+            </div>
         </>
     )
 }
