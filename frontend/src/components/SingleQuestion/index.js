@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams } from 'react-router-dom';
-import { getOneQuestion } from "../../store/question";
+import { useParams, useHistory } from 'react-router-dom';
+import { getOneQuestion, deleteQuestion } from "../../store/question";
 import EditQuestion from "../EditQuestionModal";
 import '../Feed/Feed.css'
 
@@ -11,10 +11,16 @@ function SingleQuestion() {
     console.log('dfsdfafdf', question)
     // const { question, description, id } = questions.find(question => quesId === question.id);
     const dispatch = useDispatch();
+    const history = useHistory();
 
     useEffect(() => {
         dispatch(getOneQuestion(id));
     }, [dispatch, id]);
+
+    const handleSubmit = (id) => {
+        dispatch(deleteQuestion(id));
+        history.push('/home');
+    };
 
     return (
         <>
@@ -37,6 +43,8 @@ function SingleQuestion() {
                     <EditQuestion oneQuestion={question} />
                     <button
                         className={`delete-btn-${question.id}`}
+                        type="button"
+                        onClick={() => handleSubmit(question.id)}
                     >Delete
                     </button>
                 </span>

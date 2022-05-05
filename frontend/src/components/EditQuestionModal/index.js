@@ -15,12 +15,22 @@ function EditQuestion() {
 
     return (
         <>
-            <button className="edit-question-btn" onClick={() => setShowModal(true)}>Edit Question</button>
-            {showModal && (
-                <Modal onClose={() => setShowModal(false)}>
-                    <EditQuestionForm />
-                </Modal>
-            )}
+            <div>
+                <button className="edit-question-btn" onClick={() => setShowModal(true)}>Edit Question</button>
+                {showModal && (
+                    <Modal onClose={() => setShowModal(false)}>
+                        <EditQuestionForm />
+                    </Modal>
+                )}
+            </div>
+            {/* <div>
+                <button className="delete-question-btn" onClick={() => setShowModal(true)}>Delete Question</button>
+                {showModal && (
+                    <Modal onClose={() => setShowModal(false)}>
+                        <DeleteQuestionForm />
+                    </Modal>
+                )}
+            </div> */}
         </>
     );
 }

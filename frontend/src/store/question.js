@@ -99,8 +99,13 @@ export const editOneQuestion = data => async dispatch => {
 }
 
 export const deleteQuestion = id => async dispatch => {
-    const response = await csrfFetch(`/api/question/${id}`);
-
+    const response = await csrfFetch(`/api/question/${id}`, {
+        method: 'DELETE',
+    })
+    if (response.ok) {
+        dispatch(deleteOne(id));
+    }
+    return (response);
 }
 
 const initialState = {
