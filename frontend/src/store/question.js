@@ -4,6 +4,7 @@ const GET_QUESTIONS = "questions/GET_QUESTION";
 const POST_QUESTION = "question/POST_QUESTION";
 const GET_ONE = "questions/GET_ONE";
 const EDIT_ONE = "questions/EDIT_ONE";
+const DELETE_ONE = "questions/DELETE_ONE"
 
 export const getQuestion = (questions) => ({
     type: GET_QUESTIONS,
@@ -23,6 +24,11 @@ export const getOne = (question) => ({
 export const editOne = (question) => ({
     type: EDIT_ONE,
     question
+})
+
+export const deleteOne = (id) => ({
+    type: DELETE_ONE,
+    id
 })
 
 export const getQuestions = () => async dispatch => {
@@ -80,13 +86,21 @@ export const getOneQuestion = id => async dispatch => {
 }
 
 export const editOneQuestion = data => async dispatch => {
-    const response = await csrfFetch(`/api/question/${data.id}`);
+    const response = await csrfFetch(`/api/question/${data.id}`, {
+        method: 'PUT',
+        body: JSON.stringify(data)
+    })
     console.log('data', response)
     if (response.ok) {
         let question = await response.json();
         dispatch(getOne(question));
-        return question;
+        // return question;
     }
+}
+
+export const deleteQuestion = id => async dispatch => {
+    const response = await csrfFetch(`/api/question/${id}`);
+
 }
 
 const initialState = {

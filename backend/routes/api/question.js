@@ -13,11 +13,11 @@ router.get('/:id', asyncHandler(async (req, res) => {
 }))
 
 router.put('/:id', requireAuth, handleValidationErrors, asyncHandler(async (req, res) => {
-    // const id = parseInt(req.params.id, 10);
-    const { id } = req.params.id;
+    const id = parseInt(req.params.id, 10);
+    // const { id } = req.params.id;
     const userId = req.user.id;
     const { question, description, topic } = req.body;
-    const editQuestion = await Question.findByPk({ id });
+    const editQuestion = await Question.findByPk(id);
     if (description === '') description = null;
     if (topic === '') topic = null;
 
@@ -33,8 +33,8 @@ router.put('/:id', requireAuth, handleValidationErrors, asyncHandler(async (req,
 
     await editQuestion.save()
 
-    const update = await Question.findByPk(editQuestion.id)
-    res.json(update);
+    // const update = await Question.findByPk(editQuestion.id)
+    res.json(editQuestion);
     // }
 
 }))
