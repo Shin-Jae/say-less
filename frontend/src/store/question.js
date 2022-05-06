@@ -4,7 +4,9 @@ const GET_QUESTIONS = "questions/GET_QUESTION";
 const POST_QUESTION = "question/POST_QUESTION";
 const GET_ONE = "questions/GET_ONE";
 const EDIT_ONE = "questions/EDIT_ONE";
-const DELETE_ONE = "questions/DELETE_ONE"
+const DELETE_ONE = "questions/DELETE_ONE";
+const ANSWER_ONE = "questions/ANSWER_ONE";
+const ANSWER_DELETE = "questions/ANSWER_DELETE";
 
 export const getQuestion = (questions) => ({
     type: GET_QUESTIONS,
@@ -31,6 +33,16 @@ export const deleteOne = (id) => ({
     id
 })
 
+export const answerDelete = (id) => ({
+    type: ANSWER_DELETE,
+    id
+})
+
+export const answerOne = (post) => ({
+    type: ANSWER_ONE,
+    post
+})
+
 export const getQuestions = () => async dispatch => {
     const response = await fetch(`/api/home`);
     if (response.ok) {
@@ -38,6 +50,8 @@ export const getQuestions = () => async dispatch => {
         dispatch(getQuestion(questions))
     }
 }
+
+
 
 export const postQuestion = (post) => async (dispatch) => {
     // try {
@@ -75,6 +89,22 @@ export const postQuestion = (post) => async (dispatch) => {
     // }
 };
 
+export const postAnswer = (post) => async (dispatch) => {
+    const response = await csrfFetch(`/api/question/${post.id}`, {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(post),
+    })
+
+    if (response.ok) {
+        const post = await response.json();
+        dispatch(answerOne(post));
+        return post;
+    }
+}
+
 export const getOneQuestion = id => async dispatch => {
     const response = await fetch(`/api/question/${id}`);
 
@@ -108,8 +138,20 @@ export const deleteQuestion = id => async dispatch => {
     return (response);
 }
 
+export const deleteAnswer = id = async dispatch => {
+    const response = await csrfFetch(`/api/question/answer/${id}`, {
+        method: 'DELETE',
+    })
+    if (response.ok) {
+        dispatch(answerDelete(id));
+    }
+    return (response);
+}
+
 const initialState = {
-    viewQuestion: {}
+    viewQuestion: {
+        answers: {}
+    }
 };
 
 const questionReducer = (state = initialState, action) => {
@@ -131,6 +173,10 @@ const questionReducer = (state = initialState, action) => {
                 viewQuestion: {
                     ...state[action.question.id],
                     ...action.question,
+                    answers: {
+                        ...state[action.question.Answers.id],
+                        ...action.question.Answers,
+                    }
                 },
             };
         // case POST_QUESTION:

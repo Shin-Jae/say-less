@@ -2,13 +2,16 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, useHistory } from 'react-router-dom';
 import { getOneQuestion, deleteQuestion } from "../../store/question";
+import AnswerModal from "../Answer";
 import EditQuestion from "../EditQuestionModal";
 import '../Feed/Feed.css'
+import ViewAnswer from "../ViewAnswers";
 
 function SingleQuestion() {
     const { id } = useParams();
     const question = useSelector(state => state.getQues.viewQuestion)
     console.log('dfsdfafdf', question)
+    console.log('answererw', question.answers)
     // const { question, description, id } = questions.find(question => quesId === question.id);
     const dispatch = useDispatch();
     const history = useHistory();
@@ -25,22 +28,21 @@ function SingleQuestion() {
     return (
         <>
             <h2 className="ques-header">Question</h2>
-            {/* <div className="username">
-                User(image): {User.username}
-            </div> */}
+            <div className="username">
+                User(image): {question.User?.username}
+            </div>
             <div>
                 <span key={`question-${id}`} className="question-list q-list">
                     <div className="question">
-                        Q: {question.question}
+                        <h3>Q: {question?.question}</h3>
                     </div>
                     <div className="description">
-                        D: {question.description}
+                        D: {question?.description}
                     </div>
                     <span className="ques-btn">
-                        <button
-                            className={`answer-btn-${question.id}`}
-                        >Answer
-                        </button>
+                        <ul>
+                            <AnswerModal />
+                        </ul>
                         <EditQuestion oneQuestion={question} />
                         <button
                             className={`delete-btn-${question.id}`}
@@ -50,6 +52,11 @@ function SingleQuestion() {
                         </button>
                     </span>
                 </span>
+                <div>
+                    <ul>
+                        <ViewAnswer />
+                    </ul>
+                </div>
             </div>
         </>
     )

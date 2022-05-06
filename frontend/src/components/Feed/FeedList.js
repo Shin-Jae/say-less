@@ -1,9 +1,10 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { NavLink } from 'react-router-dom';
+import { NavLink, Route, Switch } from 'react-router-dom';
 import { getQuestions } from "../../store/question";
 // import QuestionContent from "./QuestionContent";
 import QuestionFormModal from "../QuestionFormModal";
+import ViewAnswer from "../ViewAnswers";
 import './Feed.css'
 
 function FeedList() {
@@ -24,9 +25,9 @@ function FeedList() {
             {!Object.values(questions).length && <span>No questions posted</span>}
             <ul className="question-list">
                 {Object.values(questions).map(({ id, question, description, User }) => {
-                    return <NavLink to={`/question/${id}`} key={id}><li className="q-list">
+                    return <li className="q-list"><NavLink to={`/question/${id}`} key={id}>
                         <div className="username">
-                            User(image): {User.username}
+                            User(image): {User?.username}
                         </div>
                         <div className="question">
                             Q: {question}
@@ -34,11 +35,13 @@ function FeedList() {
                         <div className="description">
                             D: {description}
                         </div>
+                    </NavLink>
                         <span className="ques-btn">
-                            <button
+                            <NavLink to={`/home/${id}`}
                                 className={`answer-btn-${id}`}
                             >Answer
-                            </button>
+                            </NavLink>
+
                             <button
                                 className={`edit-btn-${id}`}
                             >Edit
@@ -47,11 +50,20 @@ function FeedList() {
                                 className={`delete-btn-${id}`}
                             >Delete
                             </button>
+
                         </span>
+                        <Switch>
+                            <Route path='/home/:id'>
+                                <ViewAnswer />
+                            </Route>
+                        </Switch>
                     </li>
-                    </NavLink>
+
                 })}
+
+
             </ul>
+
             <div className="topic">
                 <h2>Topics</h2>
                 <ul>
@@ -64,6 +76,7 @@ function FeedList() {
                     <li>Video Games</li>
                 </ul>
             </div>
+
         </>
     )
 }
