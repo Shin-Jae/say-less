@@ -24,7 +24,7 @@ function ViewAnswer() {
     return (
         <div>
 
-            {questions && Object.values(question.answers).map((answer) => {
+            {Object.values(question.answers).map((answer) => {
                 return <li key={answer?.id} className="question-list q-list">
                     <div>
                         UserId: {answer.userId}
