@@ -15,13 +15,13 @@ router.get('/:id', asyncHandler(async (req, res) => {
 }))
 
 router.post('/:id', requireAuth, handleValidationErrors, asyncHandler(async (req, res) => {
-    const quesId = parseInt(req.params.id, 10);
+    const questionId = parseInt(req.params.id, 10);
     const userId = req.user.id;
     const { answer } = req.body;
 
     const newAnswer = await Answer.create({
         answer,
-        quesId,
+        questionId,
         userId
     });
     res.json(newAnswer);
