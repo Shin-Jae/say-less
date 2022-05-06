@@ -58,4 +58,18 @@ router.delete('/:id', requireAuth, asyncHandler(async (req, res) => {
     return res.send('Success');
 }))
 
+router.delete('/answer/:id', requireAuth, asyncHandler(async (req, res) => {
+    const id = parseInt(req.params.id, 10);
+    console.log('answerId', id)
+    const userId = req.user.id;
+
+    const answer = await Question.findByPk(id);
+    if (userId !== answer.userId) {
+        res.status(401);
+        return res.send("Invalid");
+    }
+    await answer.destroy();
+    return res.send('Success');
+}))
+
 module.exports = router;
