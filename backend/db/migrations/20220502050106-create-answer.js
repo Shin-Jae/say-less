@@ -9,12 +9,13 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       userId: {
-        // references: { model: "Users" },
+        references: { model: "Users" },
         allowNull: false,
         type: Sequelize.INTEGER
       },
       questionId: {
-        // references: { model: "Questions" },
+        references: { model: "Questions" },
+        onDelete: 'CASCADE',
         allowNull: false,
         type: Sequelize.INTEGER
       },

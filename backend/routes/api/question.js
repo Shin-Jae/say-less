@@ -1,15 +1,30 @@
 const express = require('express')
 const asyncHandler = require('express-async-handler');
 const { requireAuth } = require('../../utils/auth');
-const { Question, User } = require('../../db/models');
+const { Question, User, Answer } = require('../../db/models');
 const { handleValidationErrors } = require('../../utils/validation');
 const router = express.Router();
 
 router.get('/:id', asyncHandler(async (req, res) => {
-    const id = parseInt(req.params.id, 10);
+    const questionId = parseInt(req.params.id, 10);
 
-    const question = await Question.findByPk(id);
+    const question = await Question.findByPk(questionId, {
+        include: [{ model: User }, { model: Answer }]
+    });
     res.json(question);
+}))
+
+router.post('/:id', requireAuth, handleValidationErrors, asyncHandler(async (req, res) => {
+    const quesId = parseInt(req.params.id, 10);
+    const userId = req.user.id;
+    const { answer } = req.body;
+
+    const newAnswer = await Answer.create({
+        answer,
+        quesId,
+        userId
+    });
+    res.json(newAnswer);
 }))
 
 router.put('/:id', requireAuth, handleValidationErrors, asyncHandler(async (req, res) => {
