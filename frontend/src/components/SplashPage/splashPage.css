@@ -1,0 +1,16 @@
+
+.background {
+    background-size: cover;
+    margin-top: -18px;
+    margin-left: -5px;
+    margin-right: -5px;
+}
+
+.header {
+    display: inline-block;
+    font-size: 100px;
+}
+
+.footer {
+    padding-bottom: 500px;
+}

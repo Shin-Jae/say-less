@@ -6,8 +6,9 @@ import LoginFormPage from "./components/LoginFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import Feed from "./components/Feed";
+import SplashPage from "./components/SplashPage"
+import LoginNav from "./components/LoginNav";
 import SingleQuestion from "./components/SingleQuestion";
-
 
 function App() {
   const dispatch = useDispatch();
@@ -18,22 +19,28 @@ function App() {
   }, [dispatch]);
 
   return (
-    <>
-      <Navigation isLoaded={isLoaded} />
-      {isLoaded && (
-        <Switch>
-          <Route path="/login">
-            <LoginFormPage />
-          </Route>
-          <Route path="/home">
-            <Feed />
-          </Route>
-          <Route path="/question/:id">
-            <SingleQuestion />
-          </Route>
-        </Switch>
-      )}
-    </>
+    <div>
+      <Switch>
+        <Route exact path="/">
+          <LoginNav />
+          <SplashPage />
+        </Route>
+        {isLoaded && (
+          <>
+            <Navigation isLoaded={isLoaded} />
+            <Route path="/login">
+              <LoginFormPage />
+            </Route>
+            <Route path="/home">
+              <Feed />
+            </Route>
+            <Route path="/question/:id">
+              <SingleQuestion />
+            </Route>
+          </>
+        )}
+      </Switch>
+    </div>
   );
 }
 

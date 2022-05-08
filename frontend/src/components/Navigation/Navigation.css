@@ -1,5 +1,15 @@
 .navbar {
     display: flex;
     justify-content: space-between;
+}
 
+.login-nav {
+    margin-top: -7px;
+    margin-left: -5px;
+    margin-right: -5px;
+    background-color: navajowhite;
+}
+
+.logo {
+    height: 50px;
 }
