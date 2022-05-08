@@ -5,7 +5,7 @@ function SplashPage() {
     return (
         <div className='background' style={{ backgroundImage: `url(${background})` }}>
             <div >
-                <h1 className='header'>Say Less</h1>
+                <h1 className='h1-say-less'>Say Less</h1>
             </div>
             <p>hello world this is say less where less is more</p>
             <div >

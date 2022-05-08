@@ -3,6 +3,7 @@ import * as sessionActions from '../../store/session';
 import SigninFormModal from '../SignupFormModal';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import background from "../../images/background.jpg";
 import './LoginForm.css';
 
 function LoginFormPage() {
@@ -27,38 +28,78 @@ function LoginFormPage() {
     }
 
     return (
-        <div className='login-container'>
-            <span className="login-header">
-                <h2>SayLess</h2>
-                <p>Short and sweet q/a</p>
-            </span>
-            <span className='signin-btn'>
-                <SigninFormModal />
-            </span>
-            <form className="login-form" onSubmit={handleSubmit}>
-                <ul>
-                    {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-                </ul>
-                <label>
-                    Username or Email
-                    <input
-                        type="text"
-                        value={credential}
-                        onChange={(e) => setCredential(e.target.value)}
-                        required
-                    />
-                </label>
-                <label>
-                    Password
-                    <input
-                        type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                    />
-                </label>
-                <button type="submit">Log In</button>
-            </form>
+        <div className='background' style={{ backgroundImage: `url(${background})` }}>
+            <div className='raised login-container'>
+                <div>
+                    <div className="login-header">
+                        <div className='header'>
+                            <h1>SayLess</h1>
+                        </div>
+                        <div className='sub-header'>
+                            <p>Short and sweet q/a</p>
+                        </div>
+                    </div>
+                    <div className='forms'>
+                        <div className='signin-forms'>
+                            <div className='social-sign-in'>
+                                Sign in with Google
+                            </div>
+                            <div className='social-sign-in'>
+                                Sign in with Facebook
+                            </div>
+                            <div className='signin-btn'>
+                                <SigninFormModal />
+                            </div>
+                        </div>
+                        <div className='login-form'>
+                            <div className='login-text'>
+                                Login
+                            </div>
+                            <form onSubmit={handleSubmit}>
+                                <div className='error-val'>
+                                    <ul>
+                                        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                                    </ul>
+                                </div>
+                                <div className='username'>
+                                    <label>
+                                        <div className='login-fields'>
+                                            Username or Email
+                                        </div>
+                                        <input className='login-text-fields'
+                                            type="text"
+                                            value={credential}
+                                            placeholder="Username or Email"
+                                            onChange={(e) => setCredential(e.target.value)}
+                                            required
+                                        />
+                                    </label>
+                                </div>
+                                <div className='password'>
+                                    <label>
+                                        <div className='login-fields'>
+                                            Password
+                                        </div>
+                                        <input className='login-text-fields'
+                                            type="password"
+                                            value={password}
+                                            placeholder="Password"
+                                            onChange={(e) => setPassword(e.target.value)}
+                                            required
+                                        />
+                                    </label>
+                                </div>
+                                <div className='login-btn'>
+                                    <span className='demo-btn'>
+                                        <button type='submit'>Demo</button>
+                                    </span>
+                                    <button type="submit">Log In</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 }

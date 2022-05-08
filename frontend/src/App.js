@@ -25,12 +25,12 @@ function App() {
           <LoginNav />
           <SplashPage />
         </Route>
+        <Route path="/login">
+          <LoginFormPage />
+        </Route>
         {isLoaded && (
           <>
             <Navigation isLoaded={isLoaded} />
-            <Route path="/login">
-              <LoginFormPage />
-            </Route>
             <Route path="/home">
               <Feed />
             </Route>
