@@ -25,7 +25,6 @@ function Navigation({ isLoaded }) {
 
     return (
         <div>
-            <h1>Welcome to "Say Less" !</h1>
             <ul>
                 <li className='navbar'>
                     <NavLink exact to="/home"><img className='logo' src="https://cdn-icons-png.flaticon.com/512/187/187163.png" alt=""></img></NavLink>

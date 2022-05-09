@@ -2,7 +2,7 @@ const express = require('express')
 const asyncHandler = require('express-async-handler');
 // const db = require('../../db/models');
 
-const { Question, User, Answer } = require('../../db/models');
+const { Question, User, Answer, Topic } = require('../../db/models');
 // const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const { requireAuth } = require('../../utils/auth');
@@ -12,7 +12,7 @@ const router = express.Router();
 router.get('/', asyncHandler(async (req, res) => {
     const questions = await Question.findAll({
         order: [["id", "DESC"]],
-        include: [{ model: User }, { model: Answer }]
+        include: [{ model: User }, { model: Answer }, { model: Topic }]
     });
     // console.log("jhjkhj", questions)
     res.json(questions);

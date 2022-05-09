@@ -1,3 +1,7 @@
+.all-feed-page {
+    background-color: lightgrey;
+}
+
 .ques-header {
     display: flex;
     flex-direction: column;
@@ -11,7 +15,7 @@
     align-items: center; */
     display: inline-block;
     box-sizing: initial;
-    width: 1200px;
+    width: 900px;
     margin-left: auto;
     margin-right: auto;
     padding-top: 30px;
@@ -25,7 +29,7 @@
 }
 
 .feed-list {
-    margin-top: -400px;
+    margin-top: -450px;
 }
 
 .q-list {
@@ -33,11 +37,11 @@
     flex-direction: column;
     padding: 20px;
     /* margin: 10px; */
-    margin-top: 60px;
-    margin-left: 300px;
-    margin-right: -200px;
-    text-align: center;
-    border: 2px solid grey;
+    margin-top: 30px;
+    margin-left: 450px;
+    margin-right: -400px;
+    border: 2px solid lightgrey;
+    background-color: white;
 }
 
 .topic-content {
@@ -46,9 +50,64 @@
     border: 2px solid grey;
     padding-bottom: 300px;
     padding-right: 100px;
+    margin-left: 100px;
 }
 
-/* .ques-btn {
-    display: block;
-    position: sticky;
-} */
+.username-profile {
+    display: flex;
+    justify-content: space-between;
+}
+
+.profile-img {
+    /* display: flex; */
+    height: 55px;
+    width: 55px;
+    border-radius: 50%;
+}
+
+.user-image-name {
+    display: flex;
+}
+
+.username {
+    padding-left: 10px;
+    padding-bottom: 15px;
+}
+
+.post-topic {
+    position: inherit;
+    text-align: right;
+}
+
+.question {
+    display: flex;
+    padding-top: 15px;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.description {
+    color: black;
+    font-size: 16px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.post-image {
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.img-post {
+    box-sizing: border-box;
+    width: 105.3%;
+    margin-left: -20px;
+    height: 450px;
+}
+
+.ques-btn {
+    box-sizing: border-box;
+
+    transition-property: box-shadow;
+    transition-duration: 250ms;
+}

@@ -21,7 +21,7 @@ module.exports = {
         type: Sequelize.TEXT
       },
       image: {
-        type: Sequelize.STRING(700)
+        type: Sequelize.STRING(255)
       },
       topicId: {
         references: { model: "Topics" },
