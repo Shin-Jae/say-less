@@ -30,15 +30,15 @@ router.post('/:id', requireAuth, handleValidationErrors, asyncHandler(async (req
 router.put('/:id', requireAuth, handleValidationErrors, asyncHandler(async (req, res) => {
     const id = parseInt(req.params.id, 10);
     const userId = req.user.id;
-    const { question, description, topic } = req.body;
+    const { question, description, topicId, image } = req.body;
     const editQuestion = await Question.findByPk(id);
     if (description === '') description = null;
-    if (topic === '') topic = null;
 
     // if (handleValidationErrors.isEmpty()) {
     editQuestion.question = question;
     editQuestion.description = description;
-    editQuestion.topic = topic;
+    editQuestion.topicId = topicId;
+    editQuestion.image = image
 
 
     await editQuestion.save()

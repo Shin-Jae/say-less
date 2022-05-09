@@ -15,12 +15,21 @@ function QuestionForm() {
     const [topicId, setTopicId] = useState(1);
     const [image, setImage] = useState("")
     const [showModal, setShowModal] = useState(false);
-    // const [errors, setErrors] = useState([]);
+    const [errors, setErrors] = useState([]);
 
 
     const handleSubmit = async (e) => {
-        // e.preventDefault();
+
         // console.log('adfadfaeer', topicId)
+        const errors = [];
+        if (!question.length || question.length < 3) errors.push("Questions must be at least 3 or more characters");
+
+        setErrors(errors);
+        if (errors.length) {
+            e.preventDefault();
+            return;
+        }
+
         let newPost = {
             question,
             description,
@@ -36,6 +45,8 @@ function QuestionForm() {
 
     };
 
+
+
     const handleSelect = (e) => {
         setTopicId(e);
     }
@@ -47,15 +58,16 @@ function QuestionForm() {
         setQuestion('');
         setTopicId(1);
         setDescription('');
-        setImage('')
+        setImage('');
+        setErrors([]);
     }
 
     return (
         <form className="question-modal" onSubmit={handleSubmit}>
             <div className="ques-form-header"><h2>Ask a question</h2></div>
-            {/* <ul>
+            <ul className="error-valid" style={{ textAlign: "center" }}>
                 {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-            </ul> */}
+            </ul>
             <label className="ques-form-field">
                 <div className="ques-form-text ques-input">Question:</div>
                 <input
@@ -106,7 +118,7 @@ function QuestionForm() {
             <div className="post-ques-btn">
                 <button className="submit-ques-btn ques-form-field" type="submit">Post a question</button>
             </div>
-        </form>
+        </form >
     );
 }
 

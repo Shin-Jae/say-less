@@ -1,11 +1,13 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams, useHistory } from 'react-router-dom';
-import { getOneQuestion, deleteQuestion } from "../../store/question";
+import { useParams, useHistory, Switch, Route } from 'react-router-dom';
+import { getOneQuestion, deleteQuestion, getQuestion } from "../../store/question";
 import AnswerModal from "../Answer";
 import EditQuestion from "../EditQuestionModal";
 import '../Feed/Feed.css'
+import './SingleQuestion.css'
 import ViewAnswer from "../ViewAnswers";
+import icon from "../../images/chat.png"
 
 function SingleQuestion() {
     const { id } = useParams();
@@ -26,13 +28,12 @@ function SingleQuestion() {
     };
 
     return (
-        <>
-            <h2 className="ques-header">Question</h2>
-            <div className="username">
-                <img src={`${question.User?.image}`} />{question.User?.username}
-            </div>
-            <div>
-                <span key={`question-${id}`} className="question-list q-list">
+        <div className="all-feed-page"><div className="single-feed-content">
+            <div className="ques-and-ans">
+                <span key={`question-${id}`} className="single-question-list single-q-list">
+                    <div className="user-image-name">
+                        <img className="profile-img" src={`${question.User?.image}`} /><div className="username text">{question.User?.username}</div>
+                    </div>
                     <div className="question">
                         <h3>Q: {question?.question}</h3>
                     </div>
@@ -40,28 +41,30 @@ function SingleQuestion() {
                         D: {question?.description}
                     </div>
                     <div className="image">
-                        <img src={`${question?.image}`} />
+                        <div className="post-image"><img className="single-image-post" src={`${question?.image}`} /></div>
                     </div>
-                    <span className="ques-btn">
-                        <ul>
-                            <AnswerModal />
+                    <div className="ques-btn">
+                        <ul >
+
+                            <AnswerModal className="answer-btn" />
                         </ul>
                         <EditQuestion oneQuestion={question} />
                         <button
-                            className={`delete-btn-${question.id}`}
+                            className={`ques-delete-btn`}
                             type="button"
                             onClick={() => handleSubmit(question.id)}
                         >Delete
                         </button>
-                    </span>
+                    </div>
                 </span>
-                <div>
-                    <ul>
-                        <ViewAnswer />
-                    </ul>
-                </div>
             </div>
-        </>
+            <div>
+                <ul>
+                    <ViewAnswer />
+                </ul>
+            </div>
+        </div>
+        </div>
     )
 }
 

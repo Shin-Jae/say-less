@@ -1,0 +1,56 @@
+.single-feed-content {
+    /* box-sizing: initial;
+    display: flex;
+    flex-direction: column;
+    align-items: center; */
+    display: inline-block;
+    box-sizing: initial;
+    width: 800px;
+    margin-left: auto;
+    margin-right: 700px;
+    padding-bottom: 0px;
+    padding-right: 500px;
+    /* align-items: stretch; */
+}
+
+.single-q-list {
+    display: block;
+    flex-direction: column;
+    padding: 20px;
+    /* margin: 10px; */
+    margin-top: 50px;
+    margin-left: 200px;
+    margin-right: -300px;
+    border: 2px solid rgb(213, 213, 213);
+    border-radius: 5px;
+    background-color: white;
+}
+
+.ques-and-ans {
+    margin-top: 50px;
+}
+
+.answer-view {
+    margin-left: 160px;
+}
+
+.single-image-post {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 90%;
+}
+
+.ques-btn {
+    display: flex;
+    justify-content: space-between;
+}
+
+.answer-btn {
+    height: 0px;
+}
+
+.ques-delete-btn {
+    margin-right: 50px;
+    font-weight: bold;
+    height: 30px;
+}

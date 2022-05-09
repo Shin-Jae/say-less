@@ -54,6 +54,11 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date()
       },
+      {
+        topic: "Fitness",
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
     ], {});
   },
 

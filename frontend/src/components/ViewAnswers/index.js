@@ -2,9 +2,12 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getQuestions, deleteAnswer } from "../../store/question";
 import '../Feed/Feed.css'
+import '../SingleQuestion/SingleQuestion.css'
 
 function ViewAnswer() {
     const question = useSelector(state => state.getQues.viewQuestion)
+    // const user = question.Answers.map((answer) => answer.userId)
+    // console.log(user);
     // const answers = question.answers;
 
     // const id = answer.id;
@@ -25,9 +28,9 @@ function ViewAnswer() {
         <div>
 
             {Object.values(question.answers).map((answer) => {
-                return <li key={answer?.id} className="question-list q-list">
+                return <li key={answer?.id} className="answer-view question-list single-q-list">
                     <div>
-                        UserId: {answer.userId}
+                        UserId: {answer?.userId}
                     </div>
                     <h3>A: {answer?.answer}</h3>
                     <span className="ques-btn">
@@ -40,7 +43,7 @@ function ViewAnswer() {
                             value={answer.id}
                             onClick={(e) => handleClick(e.target.value)}
                         >
-                            Delete {answer.id}
+                            Delete
                         </button>
                     </span>
                 </li>

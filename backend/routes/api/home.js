@@ -20,10 +20,10 @@ router.get('/', asyncHandler(async (req, res) => {
     res.json(body);
 }));
 
+
 router.post('/', requireAuth, handleValidationErrors, asyncHandler(async (req, res) => {
     const userId = req.user.id;
     let { question, description, topicId, image } = req.body
-
 
     const newPost = await Question.create({
         question,
@@ -32,6 +32,8 @@ router.post('/', requireAuth, handleValidationErrors, asyncHandler(async (req, r
         image,
         userId
     });
+
+
     res.json(newPost);
 }))
 

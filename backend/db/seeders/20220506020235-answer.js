@@ -11,36 +11,36 @@ module.exports = {
     return queryInterface.bulkInsert('Answers', [
       {
         userId: 1,
-        questionId: 5,
-        answer: 'testing Answer',
+        questionId: 1,
+        answer: 'Definitely to be',
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         userId: 3,
-        questionId: 5,
-        answer: 'testAnswer',
+        questionId: 1,
+        answer: 'Why not both',
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        userId: 1,
-        questionId: 6,
-        answer: 'drerertw',
+        userId: 4,
+        questionId: 2,
+        answer: 'Basketball is my favorite sport, I like the way they dribble up and down the court',
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        userId: 1,
-        questionId: 8,
-        answer: 'mnccmbvbmv',
+        userId: 5,
+        questionId: 2,
+        answer: 'Im a Rachet ball guy myself',
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         userId: 2,
         questionId: 8,
-        answer: 'yiuoyyuiy',
+        answer: 'tetur adipiscing elit, sed do eiusmod temp',
         createdAt: new Date(),
         updatedAt: new Date()
       },

@@ -10,8 +10,8 @@
 
 .ques-form-header {
     margin-left: 165px;
-    margin-top: 30px;
-    margin-bottom: 60px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .ques-form-text {
@@ -39,6 +39,12 @@
 .ques-form-field.topic-field {
     padding-top: 5px;
 
+}
+
+.error-valid {
+    color: red;
+    font-size: 20px;
+    margin-left: 40px;
 }
 
 .topic-select {
