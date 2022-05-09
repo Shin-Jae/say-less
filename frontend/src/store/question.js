@@ -8,9 +8,9 @@ const DELETE_ONE = "questions/DELETE_ONE";
 const ANSWER_ONE = "questions/ANSWER_ONE";
 const ANSWER_DELETE = "questions/ANSWER_DELETE";
 
-export const getQuestion = (questions) => ({
+export const getQuestion = (body) => ({
     type: GET_QUESTIONS,
-    questions
+    body
 });
 
 export const addPost = (post) => ({
@@ -46,8 +46,9 @@ export const answerOne = (post) => ({
 export const getQuestions = () => async dispatch => {
     const response = await fetch(`/api/home`);
     if (response.ok) {
-        let questions = await response.json();
-        dispatch(getQuestion(questions))
+        let body = await response.json();
+        console.log('dsfadfa', body)
+        dispatch(getQuestion(body))
     }
 }
 
@@ -151,23 +152,22 @@ export const deleteAnswer = id => async dispatch => {
 const initialState = {
     viewQuestion: {
         answers: {}
-    }
+    },
+    topicGet: {}
 };
 
 const questionReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_QUESTIONS:
             let newState = { ...state, viewQuestion: { ...state.viewQuestion } };
-            //newState. = action.questions;
-            // console.log('yoyoyoyo', action.questions)
-            action.questions.forEach((question) => {
+            action.body.questions.forEach((question) => {
                 newState.viewQuestion[question.id] = question;
+            });
+            action.body.topics.forEach((topic) => {
+                newState.topicGet[topic.id] = topic;
             });
             return newState;
         case GET_ONE:
-            // let one = { ...state, viewQuestion: { ...state. } };
-            // one.viewQuestion[action.question.id] = action.question
-            // return one;
             return {
                 ...state,
                 viewQuestion: {
@@ -179,8 +179,6 @@ const questionReducer = (state = initialState, action) => {
                     }
                 },
             };
-        // case POST_QUESTION:
-        //     return { ...state, viewQuestion: { ...state.viewQuestion, ...action.post } }
         case EDIT_ONE:
             newState = Object.assign({}, state);
             newState.viewQuestion = state.viewQuestion.map((ques) => {

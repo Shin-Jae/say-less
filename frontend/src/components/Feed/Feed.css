@@ -8,6 +8,31 @@
     align-items: center;
 }
 
+.ask-question-container {
+    border: 10px solid rgb(213, 213, 213);
+    background-color: white;
+    margin-right: 5px;
+    border-radius: 5px;
+}
+
+.text-field-modal {
+    height: 45px;
+    width: 600px;
+    margin-left: 100px;
+    margin-right: 97px;
+    margin-bottom: 25px;
+    margin-top: -60px;
+    border-radius: 2rem;
+    background-color: lightgray;
+    border-color: white;
+}
+
+.ques-profile-img {
+    margin-top: 15px;
+    margin-bottom: -40px;
+margin-left: 25px;
+}
+
 .feed-content {
     /* box-sizing: initial;
     display: flex;
@@ -18,7 +43,7 @@
     width: 900px;
     margin-left: auto;
     margin-right: auto;
-    padding-top: 30px;
+    margin-top: -150px;
     padding-bottom: 0px;
     /* align-items: stretch; */
 }
@@ -26,6 +51,7 @@
 .question-form {
     display: flex;
     justify-content: center;
+    margin-left: 900px;
 }
 
 .feed-list {
@@ -40,17 +66,34 @@
     margin-top: 30px;
     margin-left: 450px;
     margin-right: -400px;
-    border: 2px solid lightgrey;
+    border: 2px solid rgb(213, 213, 213);
+    border-radius: 5px;
     background-color: white;
 }
 
 .topic-content {
     display: inline-block;
     position: sticky;
-    border: 2px solid grey;
-    padding-bottom: 300px;
+    top: 150px;
+    height: 500px;
+    overflow: auto;
+    padding-bottom: 150px;
     padding-right: 100px;
-    margin-left: 100px;
+    margin-left: 200px;
+}
+
+.topic-header {
+    text-align: center;
+    margin-top: 50px;
+    margin-left: 65px;
+    margin-bottom: -10px;
+}
+
+.topic-name {
+    padding-top: 40px;
+    margin-left: 30px;
+    margin-right: -30px;
+    font-size: 20px;
 }
 
 .username-profile {
@@ -110,7 +153,6 @@
     transition-property: box-shadow;
     transition-duration: 250ms;
 }
-
 .answer-icon-btn {
     margin-top: -10px;
     margin-bottom: -10px;
@@ -118,13 +160,46 @@
     width: 35px;;
 }
 
+
+.icon-btns {
+    padding-bottom: 20px;
+    display: flex;
+    justify-content: center;
+
+}
+
+.icon-text {
+    margin-left: 120px;
+    margin-right: 120px;
+}
+
+.ask-icon-btn {
+    margin-top: -10px;
+    margin-bottom: -10px;
+    padding-right: 10px;
+    height: 35px;
+    width: 35px;;
+}
+.answer-icon-button {
+    margin-top: -10px;
+    margin-bottom: -10px;
+    padding-right: 10px;
+    height: 35px;
+    width: 35px;;
+}
+
+
 .answer-count {
-    padding-left: 5px;
+    padding-left: 10px;
+    font-size: 20px;
+
+}
+a {
     text-decoration: none;
     color: black;
 }
 
-.answer-count {
+a:visited {
     text-decoration: none;
     color: black;
 }

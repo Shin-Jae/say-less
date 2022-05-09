@@ -2,10 +2,12 @@ import { legacy_createStore as createStore, combineReducers, applyMiddleware, co
 import thunk from "redux-thunk";
 import sessionReducer from './session';
 import questionReducer from "./question";
+import topicReducer from "./topic";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
-  getQues: questionReducer
+  getQues: questionReducer,
+  allTopics: topicReducer
 });
 
 let enhancer;

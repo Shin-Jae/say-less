@@ -11,21 +11,25 @@ const router = express.Router();
 
 router.get('/', asyncHandler(async (req, res) => {
     const questions = await Question.findAll({
-        order: [["id", "DESC"]],
+        // order: [["id", "DESC"]],
         include: [{ model: User }, { model: Answer }, { model: Topic }]
     });
+    const topics = await Topic.findAll();
+    let body = { questions, topics }
     // console.log("jhjkhj", questions)
-    res.json(questions);
+    res.json(body);
 }));
 
 router.post('/', requireAuth, handleValidationErrors, asyncHandler(async (req, res) => {
     const userId = req.user.id;
-    const { question, description, topic } = req.body
+    let { question, description, topicId, image } = req.body
+
 
     const newPost = await Question.create({
         question,
         description,
-        topic,
+        topicId,
+        image,
         userId
     });
     res.json(newPost);
