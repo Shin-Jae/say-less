@@ -90,6 +90,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-items: center;
+    height: 500px;
+    width: 500px;
+    /* border-radius: ; */
     /* box-sizing: border-box;
     width: 50%; */
 }
@@ -102,6 +106,33 @@
 .login-fields {
     font-weight: bold;
     padding-bottom: 10px;
+}
+
+.signup-fields {
+    display: flex;
+    flex-direction: column;
+    /* padding-left: 100px; */
+    padding-top: 30px;
+}
+
+.signup-text-fields {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 20px;
+    width: 200px;
+}
+
+.sign-up-submit {
+    /* margin-left: 50px;
+    margin-right: 50px; */
+
+    margin-top: 30px;
+}
+
+.error-vali {
+    color: red;
+    /* margin-left: 50px;
+    margin-right: 50px; */
 }
 
 .login-btn {

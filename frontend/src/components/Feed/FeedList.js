@@ -34,6 +34,11 @@ function FeedList() {
                             <div><li>Music</li></div>
                             <div><li>Art</li></div>
                         </ul>
+                        <Switch>
+                            <Route path='/home/:id'>
+                                <ViewAnswer />
+                            </Route>
+                        </Switch>
                     </div>
                 </div>
                 <div className="feed-list">
@@ -42,10 +47,10 @@ function FeedList() {
                     </div>
                     {!Object.values(questions).length && <span>No questions posted</span>}
                     <ul className="question-list">
-                        {Object.values(questions).map(({ id, question, description, User }) => {
-                            return <li className="q-list"><NavLink to={`/question/${id}`} key={id}>
+                        {Object.values(questions).map(({ id, question, description, image, User }) => {
+                            return <li className="q-list" key={`question-feed-${id}`}><NavLink to={`/question/${id}`} key={id}>
                                 <div className="username">
-                                    User(image): {User?.username}
+                                    <img src={`${User?.image}`} />{User?.username}
                                 </div>
                                 <div className="question">
                                     Q: {question}
@@ -54,6 +59,7 @@ function FeedList() {
                                     D: {description}
                                 </div>
                             </NavLink>
+                                <div><img src={`${image}`} alt=""></img></div>
                                 <span className="ques-btn">
                                     <NavLink to={`/home/${id}`}
                                         className={`answer-btn-${id}`}
@@ -70,11 +76,6 @@ function FeedList() {
                                     </button>
 
                                 </span>
-                                <Switch>
-                                    <Route path='/home/:id'>
-                                        <ViewAnswer />
-                                    </Route>
-                                </Switch>
                             </li>
 
                         })}

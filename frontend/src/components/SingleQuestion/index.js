@@ -29,7 +29,7 @@ function SingleQuestion() {
         <>
             <h2 className="ques-header">Question</h2>
             <div className="username">
-                User(image): {question.User?.username}
+                <img src={`${question.User?.image}`} />{question.User?.username}
             </div>
             <div>
                 <span key={`question-${id}`} className="question-list q-list">
@@ -38,6 +38,9 @@ function SingleQuestion() {
                     </div>
                     <div className="description">
                         D: {question?.description}
+                    </div>
+                    <div className="image">
+                        <img src={`${question?.image}`} />
                     </div>
                     <span className="ques-btn">
                         <ul>
