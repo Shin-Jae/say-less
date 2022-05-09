@@ -47,3 +47,10 @@ npx dotenv sequelize db:seed:all
 5. In the frontend and backend directories,  you now start the servers with:
 
 npm start
+  
+8. Sign up or login as Demo user
+  
+#Features
+  
+- CRUD Questions
+- CRD Answers
