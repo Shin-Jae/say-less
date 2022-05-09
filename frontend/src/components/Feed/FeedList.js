@@ -2,10 +2,10 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink, Route, Switch } from 'react-router-dom';
 import { getQuestions } from "../../store/question";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // import QuestionContent from "./QuestionContent";
 import QuestionFormModal from "../QuestionFormModal";
 import ViewAnswer from "../ViewAnswers";
+import icon from "../../images/chat.png"
 import './Feed.css'
 
 function FeedList() {
@@ -74,19 +74,18 @@ function FeedList() {
                                 </div>
                                 <div className="post-image"><img className="img-post" src={`${image}`} alt=""></img></div>
                                 <span className="ques-btn">
-                                    <NavLink to={`/home/${id}`}
-                                        className={`answer-btn-${id}`}
-                                    ><FontAwesomeIcon icon="fa-light fa-comment-pen" /> {Answers?.length}
+                                    <NavLink to={`/question/${id}`}
+                                    ><img className='answer-icon-btn' src={icon} />
                                     </NavLink>
-
-                                    <button
+                                    <span className="answer-count">{Answers?.length}</span>
+                                    {/* <button
                                         className={`edit-btn-${id}`}
                                     >Edit
                                     </button>
                                     <button
                                         className={`delete-btn-${id}`}
                                     >Delete
-                                    </button>
+                                    </button> */}
 
                                 </span>
                             </li>
