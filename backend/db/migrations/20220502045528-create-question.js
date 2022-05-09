@@ -20,6 +20,14 @@ module.exports = {
       description: {
         type: Sequelize.TEXT
       },
+      image: {
+        type: Sequelize.STRING(700)
+      },
+      topicId: {
+        references: { model: "Topics" },
+        allowNull: false,
+        type: Sequelize.INTEGER
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

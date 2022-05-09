@@ -8,20 +8,19 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      category: {
+      topic: {
         allowNull: false,
         type: Sequelize.STRING
       },
-      questionId: {
-        // references: { model: "Questions" },
-        allowNull: false,
-        type: Sequelize.INTEGER
-      },
-      userId: {
-        // references: { model: "Users" },
-        allowNull: false,
-        type: Sequelize.INTEGER
-      },
+      // questionId: {
+      //   references: { model: "Questions" },
+      //   type: Sequelize.INTEGER
+      // },
+      // userId: {
+      //   // references: { model: "Users" },
+      //   allowNull: false,
+      //   type: Sequelize.INTEGER
+      // },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
