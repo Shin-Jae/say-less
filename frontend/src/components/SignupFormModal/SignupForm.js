@@ -39,6 +39,7 @@ function SignupForm() {
                         className="signup-text-fields"
                         type="text"
                         value={email}
+                        placeholder="Email"
                         onChange={(e) => setEmail(e.target.value)}
                         required
                     />
@@ -49,6 +50,7 @@ function SignupForm() {
                         className="signup-text-fields"
                         type="text"
                         value={username}
+                        placeholder="Username"
                         onChange={(e) => setUsername(e.target.value)}
                         required
                     />
@@ -59,6 +61,7 @@ function SignupForm() {
                         className="signup-text-fields"
                         type="password"
                         value={password}
+                        placeholder="Password"
                         onChange={(e) => setPassword(e.target.value)}
                         required
                     />
@@ -69,6 +72,7 @@ function SignupForm() {
                         className="signup-text-fields"
                         type="password"
                         value={confirmPassword}
+                        placeholder="Confirm Password"
                         onChange={(e) => setConfirmPassword(e.target.value)}
                         required
                     />

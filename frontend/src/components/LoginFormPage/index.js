@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import * as sessionActions from '../../store/session';
 import SigninFormModal from '../SignupFormModal';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import background from "../../images/background.jpg";
 import './LoginForm.css';
 
 function LoginFormPage() {
     const dispatch = useDispatch();
+    const history = useHistory();
     const sessionUser = useSelector(state => state.session.user);
     const [credential, setCredential] = useState('');
     const [password, setPassword] = useState('');
@@ -20,11 +21,26 @@ function LoginFormPage() {
     const handleSubmit = (e) => {
         e.preventDefault();
         setErrors([]);
-        return dispatch(sessionActions.login({ credential, password }))
-            .catch(async (res) => {
+        if (!sessionUser) {
+
+            return dispatch(sessionActions.login({ credential, password }))
+                .catch(async (res) => {
+                    const data = await res.json();
+                    if (data && data.errors) setErrors(data.errors);
+                });
+        }
+    }
+
+    const demoUser = (e) => {
+        // console.log('----------')
+        setErrors([]);
+        dispatch(sessionActions.login({ credential: 'Demo-lition', password: 'password' })).catch(
+            async (res) => {
                 const data = await res.json();
                 if (data && data.errors) setErrors(data.errors);
-            });
+            }
+        );
+        history.push('/home');
     }
 
     return (
@@ -56,11 +72,11 @@ function LoginFormPage() {
                                 Login
                             </div>
                             <form onSubmit={handleSubmit}>
-                                <div className='error-val'>
-                                    <ul>
+                                <ul>
+                                    <div className='error-vali'>
                                         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-                                    </ul>
-                                </div>
+                                    </div>
+                                </ul>
                                 <div className='username'>
                                     <label>
                                         <div className='login-fields'>
@@ -91,7 +107,10 @@ function LoginFormPage() {
                                 </div>
                                 <div className='login-btn'>
                                     <span className='demo-btn'>
-                                        <button type='submit'>Demo</button>
+                                        <button
+                                            type='submit'
+                                            onClick={demoUser}>
+                                            Demo</button>
                                     </span>
                                     <button type="submit">Log In</button>
                                 </div>
