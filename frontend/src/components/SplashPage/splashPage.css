@@ -9,6 +9,16 @@
 .h1-say-less {
     display: inline-block;
     font-size: 100px;
+    font-style: italic;
+    padding-left: 30px;
+    color: beige;
+}
+
+.quote {
+    padding-top: 320px;
+    font-size: 40px;
+    font-style: italic;
+    padding-left: 500px;
 }
 
 .footer {
